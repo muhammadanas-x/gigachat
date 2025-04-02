@@ -76,6 +76,8 @@ async function testDevicePairingSync() {
   await secondaryUser.ready()
   console.log(`  - Secondary user paired successfully`)
 
+  console.log(primaryUser, secondaryUser)
+
   // Verify public keys match
   if (!primaryUser.publicKey.equals(secondaryUser.publicKey)) {
     throw new Error('Public keys do not match between devices')
