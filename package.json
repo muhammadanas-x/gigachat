@@ -26,5 +26,8 @@
     "hyperschema": "^1.10.4",
     "hyperswarm": "^4.8.4",
     "ready-resource": "^1.1.1"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
   }
 }

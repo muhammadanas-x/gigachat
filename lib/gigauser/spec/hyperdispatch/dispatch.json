@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "schema": [
+    {
+      "id": 0,
+      "name": "@gigauser/remove-writer",
+      "requestType": "@gigauser/writer",
+      "version": 1
+    },
+    {
+      "id": 1,
+      "name": "@gigauser/add-writer",
+      "requestType": "@gigauser/writer",
+      "version": 1
+    },
+    {
+      "id": 2,
+      "name": "@gigauser/add-invite",
+      "requestType": "@gigauser/invite",
+      "version": 1
+    },
+    {
+      "id": 3,
+      "name": "@gigauser/set-profile",
+      "requestType": "@gigauser/profile",
+      "version": 1
+    },
+    {
+      "id": 4,
+      "name": "@gigauser/update-rooms",
+      "requestType": "@gigauser/rooms",
+      "version": 1
+    },
+    {
+      "id": 5,
+      "name": "@gigauser/update-devices",
+      "requestType": "@gigauser/devices",
+      "version": 1
+    },
+    {
+      "id": 6,
+      "name": "@gigauser/update-settings",
+      "requestType": "@gigauser/settings",
+      "version": 1
+    }
+  ]
+}

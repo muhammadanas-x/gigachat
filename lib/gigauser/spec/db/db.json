@@ -1,0 +1,84 @@
+{
+  "version": 0,
+  "offset": 0,
+  "schema": [
+    {
+      "name": "writer",
+      "namespace": "gigauser",
+      "id": 0,
+      "type": 1,
+      "indexes": [],
+      "schema": "@gigauser/writer",
+      "derived": false,
+      "key": [
+        "key"
+      ],
+      "trigger": null
+    },
+    {
+      "name": "invite",
+      "namespace": "gigauser",
+      "id": 1,
+      "type": 1,
+      "indexes": [],
+      "schema": "@gigauser/invite",
+      "derived": false,
+      "key": [
+        "id"
+      ],
+      "trigger": null
+    },
+    {
+      "name": "profile",
+      "namespace": "gigauser",
+      "id": 2,
+      "type": 1,
+      "indexes": [],
+      "schema": "@gigauser/profile",
+      "derived": false,
+      "key": [
+        "key"
+      ],
+      "trigger": null
+    },
+    {
+      "name": "rooms",
+      "namespace": "gigauser",
+      "id": 3,
+      "type": 1,
+      "indexes": [],
+      "schema": "@gigauser/rooms",
+      "derived": false,
+      "key": [
+        "key"
+      ],
+      "trigger": null
+    },
+    {
+      "name": "devices",
+      "namespace": "gigauser",
+      "id": 4,
+      "type": 1,
+      "indexes": [],
+      "schema": "@gigauser/devices",
+      "derived": false,
+      "key": [
+        "key"
+      ],
+      "trigger": null
+    },
+    {
+      "name": "settings",
+      "namespace": "gigauser",
+      "id": 5,
+      "type": 1,
+      "indexes": [],
+      "schema": "@gigauser/settings",
+      "derived": false,
+      "key": [
+        "key"
+      ],
+      "trigger": null
+    }
+  ]
+}
