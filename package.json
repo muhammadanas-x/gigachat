@@ -14,10 +14,11 @@
   "description": "",
   "dependencies": {
     "autobase": "^7.0.34",
-    "corestore": "^7.0.7",
     "b4a": "^1.6.7",
     "blind-pairing": "^2.3.1",
     "compact-encoding": "^2.16.0",
+    "corestore": "^7.0.7",
+    "debounceify": "^1.1.0",
     "hyperbee": "^2.22.2",
     "hypercore": "^11.0.9",
     "hyperdb": "^4.9.4",
