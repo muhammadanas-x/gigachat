@@ -3,46 +3,11 @@ const Corestore = require('corestore')
 const Gigauser = require('../lib/gigauser/Gigauser.js')
 const fs = require('fs')
 const path = require('path')
-
-// Define an ES module compatibility layer
-// Many hypercore-protocol modules need this handling
-const packageJson = require('../package.json')
-if (packageJson.type === 'module') {
-  // Add import compatibility - if needed
-  console.log('Running in ESM mode')
-}
-
-// Use this version of rimraf which doesn't rely on ES modules
-function rimrafSync(path) {
-  try {
-    if (fs.existsSync(path)) {
-      const files = fs.readdirSync(path)
-      for (const file of files) {
-        const curPath = `${path}/${file}`
-        if (fs.lstatSync(curPath).isDirectory()) {
-          rimrafSync(curPath)
-        } else {
-          fs.unlinkSync(curPath)
-        }
-      }
-      fs.rmdirSync(path)
-    }
-  } catch (err) {
-    console.error(`Error removing directory ${path}:`, err)
-  }
-}
-
-// Promisified version
-const rimraf = async (path) => {
-  return new Promise((resolve) => {
-    rimrafSync(path)
-    resolve()
-  })
-}
+const { rimraf } = require('rimraf')
 
 // Test directories
-const TEST_DIR_1 = path.join(__dirname, 'test-gigauser-1')
-const TEST_DIR_2 = path.join(__dirname, 'test-gigauser-2')
+const TEST_DIR_1 = path.join('./', 'test-gigauser-1')
+const TEST_DIR_2 = path.join('./', 'test-gigauser-2')
 
 // Sample data
 const TEST_SEED = 'abandon ability able about above absent absorb abstract absurd abuse access accident account accuse achieve acid acoustic acquire across act action actor'
@@ -98,7 +63,7 @@ async function testCreateUser() {
   await store.ready()
 
   // Create a new user
-  const user = new Gigauser(store, { seed: TEST_SEED })
+  const user = await Gigauser.create(store, TEST_SEED)
   await user.ready()
 
   // Verify the user was created
@@ -132,7 +97,7 @@ async function testUpdateProfile() {
   await store.ready()
 
   // Create a new user
-  const user = new Gigauser(store, { seed: TEST_SEED })
+  const user = await Gigauser.create(store, TEST_SEED)
   await user.ready()
 
   // Get original profile
@@ -166,7 +131,7 @@ async function testAddRoom() {
   await store.ready()
 
   // Create a new user
-  const user = new Gigauser(store, { seed: TEST_SEED })
+  const user = await Gigauser.create(store, TEST_SEED)
   await user.ready()
 
   // Get original room count
@@ -224,7 +189,8 @@ async function testUpdateSettings() {
   await store.ready()
 
   // Create a new user
-  const user = new Gigauser(store, { seed: TEST_SEED })
+  //
+  const user = await Gigauser.create(store, TEST_SEED)
   await user.ready()
 
   // Update settings
@@ -253,7 +219,7 @@ async function testDevicePairing() {
   await store.ready()
 
   // Create a user
-  const user = new Gigauser(store, { seed: TEST_SEED })
+  const user = await Gigauser.create(store, TEST_SEED)
   await user.ready()
   console.log(`  - User created: ${user.publicKey.toString('hex').substring(0, 8)}...`)
 
