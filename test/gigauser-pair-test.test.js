@@ -4,7 +4,8 @@ const Gigauser = require('../lib/gigauser/Gigauser.js')
 const fs = require('fs')
 const path = require('path')
 const { rimraf } = require('rimraf')
-
+const b4a = require('b4a')
+const z32 = require('z32')
 // Test directories
 const TEST_DIR_1 = path.join('./test-gigauser/', 'test-gigauser-pairing-1')
 const TEST_DIR_2 = path.join('./test-gigauser/', 'test-gigauser-pairing-2')
@@ -71,15 +72,26 @@ async function testDevicePairingSync() {
   const invite = await primaryUser.createPairingInvite()
   console.log(`  - Pairing invite created: ${invite.substring(0, 10)}...`)
 
+  await delay(500)
   // Create secondary user by pairing
   const secondaryUser = await Gigauser.pairDevice(store2, invite)
   await secondaryUser.ready()
-  console.log(`  - Secondary user paired successfully`)
 
-  console.log(primaryUser, secondaryUser)
+
+  await delay(500)
+
+
+  console.log(`  - Secondary user paired successfully`)
+  // await primaryUser.refreshUser()
+  // await secondaryUser.refreshUser()
+
+
+  const pub1 = (primaryUser.publicKey).toString('hex')
+  const pub2 = (secondaryUser.publicKey).toString('hex')
+  console.log({ pub1, pub2 })
 
   // Verify public keys match
-  if (!primaryUser.publicKey.equals(secondaryUser.publicKey)) {
+  if (pub1 !== pub2) {
     throw new Error('Public keys do not match between devices')
   }
 
@@ -88,7 +100,9 @@ async function testDevicePairingSync() {
   console.log('  - Updated profile on primary device')
 
   // Wait a bit for sync
-  await delay(200)
+  await delay(500)
+
+  console.log(primaryUser.profile, secondaryUser.profile)
 
   // Verify profile sync
   if (secondaryUser.profile.name !== TEST_PROFILE.name ||
