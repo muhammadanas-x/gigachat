@@ -640,7 +640,7 @@
         {
           "name": "createdBy",
           "required": true,
-          "type": "buffer",
+          "type": "string",
           "version": 1
         },
         {

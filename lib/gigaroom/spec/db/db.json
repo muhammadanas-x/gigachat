@@ -33,11 +33,7 @@
       "namespace": "gigaroom",
       "id": 2,
       "type": 1,
-      "indexes": [
-        "@gigaroom/messagesByRoom",
-        "@gigaroom/messagesByThread",
-        "@gigaroom/messagesByChannel"
-      ],
+      "indexes": [],
       "schema": "@gigaroom/message",
       "derived": false,
       "key": [
@@ -76,10 +72,7 @@
       "namespace": "gigaroom",
       "id": 5,
       "type": 1,
-      "indexes": [
-        "@gigaroom/membersByRoom",
-        "@gigaroom/membersByUser"
-      ],
+      "indexes": [],
       "schema": "@gigaroom/member",
       "derived": false,
       "key": [
@@ -92,9 +85,7 @@
       "namespace": "gigaroom",
       "id": 6,
       "type": 1,
-      "indexes": [
-        "@gigaroom/rolesByRoom"
-      ],
+      "indexes": [],
       "schema": "@gigaroom/role",
       "derived": false,
       "key": [
@@ -133,10 +124,7 @@
       "namespace": "gigaroom",
       "id": 9,
       "type": 1,
-      "indexes": [
-        "@gigaroom/channelsByRoom",
-        "@gigaroom/channelsByCategory"
-      ],
+      "indexes": [],
       "schema": "@gigaroom/channel",
       "derived": false,
       "key": [
@@ -162,10 +150,7 @@
       "namespace": "gigaroom",
       "id": 11,
       "type": 1,
-      "indexes": [
-        "@gigaroom/filesByRoom",
-        "@gigaroom/filesByMessage"
-      ],
+      "indexes": [],
       "schema": "@gigaroom/file",
       "derived": false,
       "key": [
@@ -178,157 +163,13 @@
       "namespace": "gigaroom",
       "id": 12,
       "type": 1,
-      "indexes": [
-        "@gigaroom/mentionsByUser",
-        "@gigaroom/mentionsByRole"
-      ],
+      "indexes": [],
       "schema": "@gigaroom/mention",
       "derived": false,
       "key": [
         "id"
       ],
       "trigger": null
-    },
-    {
-      "name": "messagesByRoom",
-      "namespace": "gigaroom",
-      "id": 13,
-      "type": 2,
-      "collection": "@gigaroom/message",
-      "unique": false,
-      "key": [
-        "roomId",
-        "timestamp"
-      ]
-    },
-    {
-      "name": "messagesByThread",
-      "namespace": "gigaroom",
-      "id": 14,
-      "type": 2,
-      "collection": "@gigaroom/message",
-      "unique": false,
-      "key": [
-        "threadRootId",
-        "timestamp"
-      ]
-    },
-    {
-      "name": "messagesByChannel",
-      "namespace": "gigaroom",
-      "id": 15,
-      "type": 2,
-      "collection": "@gigaroom/message",
-      "unique": false,
-      "key": [
-        "channelId",
-        "timestamp"
-      ]
-    },
-    {
-      "name": "membersByRoom",
-      "namespace": "gigaroom",
-      "id": 16,
-      "type": 2,
-      "collection": "@gigaroom/member",
-      "unique": false,
-      "key": [
-        "roomId"
-      ]
-    },
-    {
-      "name": "membersByUser",
-      "namespace": "gigaroom",
-      "id": 17,
-      "type": 2,
-      "collection": "@gigaroom/member",
-      "unique": false,
-      "key": [
-        "userKey"
-      ]
-    },
-    {
-      "name": "rolesByRoom",
-      "namespace": "gigaroom",
-      "id": 18,
-      "type": 2,
-      "collection": "@gigaroom/role",
-      "unique": false,
-      "key": [
-        "roomId",
-        "position"
-      ]
-    },
-    {
-      "name": "channelsByRoom",
-      "namespace": "gigaroom",
-      "id": 19,
-      "type": 2,
-      "collection": "@gigaroom/channel",
-      "unique": false,
-      "key": [
-        "roomId",
-        "position"
-      ]
-    },
-    {
-      "name": "channelsByCategory",
-      "namespace": "gigaroom",
-      "id": 20,
-      "type": 2,
-      "collection": "@gigaroom/channel",
-      "unique": false,
-      "key": [
-        "categoryId",
-        "position"
-      ]
-    },
-    {
-      "name": "filesByRoom",
-      "namespace": "gigaroom",
-      "id": 21,
-      "type": 2,
-      "collection": "@gigaroom/file",
-      "unique": false,
-      "key": [
-        "roomId",
-        "uploadedAt"
-      ]
-    },
-    {
-      "name": "filesByMessage",
-      "namespace": "gigaroom",
-      "id": 22,
-      "type": 2,
-      "collection": "@gigaroom/file",
-      "unique": false,
-      "key": [
-        "messageId"
-      ]
-    },
-    {
-      "name": "mentionsByUser",
-      "namespace": "gigaroom",
-      "id": 23,
-      "type": 2,
-      "collection": "@gigaroom/mention",
-      "unique": false,
-      "key": [
-        "userId",
-        "timestamp"
-      ]
-    },
-    {
-      "name": "mentionsByRole",
-      "namespace": "gigaroom",
-      "id": 24,
-      "type": 2,
-      "collection": "@gigaroom/mention",
-      "unique": false,
-      "key": [
-        "roleId",
-        "timestamp"
-      ]
     }
   ]
 }
