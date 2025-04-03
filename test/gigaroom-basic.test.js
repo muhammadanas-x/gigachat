@@ -138,7 +138,6 @@ async function testRoomCreationAndJoining() {
   console.log('  - Checking user room lists...')
   const creatorRooms = creatorUser.rooms
   const joinerRooms = joinerUser.rooms
-
   const creatorRoomEntry = creatorRooms.find(r => r.id === createdRoom.id)
   const joinerRoomEntry = joinerRooms.find(r => r.id === createdRoom.id)
 
