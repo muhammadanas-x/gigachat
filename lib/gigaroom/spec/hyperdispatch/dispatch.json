@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "schema": [
+    {
+      "id": 0,
+      "name": "@gigaroom/remove-writer",
+      "requestType": "@gigaroom/writer",
+      "version": 1
+    },
+    {
+      "id": 1,
+      "name": "@gigaroom/add-writer",
+      "requestType": "@gigaroom/writer",
+      "version": 1
+    },
+    {
+      "id": 2,
+      "name": "@gigaroom/add-invite",
+      "requestType": "@gigaroom/invite",
+      "version": 1
+    },
+    {
+      "id": 3,
+      "name": "@gigaroom/create-room",
+      "requestType": "@gigaroom/room",
+      "version": 1
+    },
+    {
+      "id": 4,
+      "name": "@gigaroom/update-room",
+      "requestType": "@gigaroom/room",
+      "version": 1
+    },
+    {
+      "id": 5,
+      "name": "@gigaroom/add-member",
+      "requestType": "@gigaroom/member",
+      "version": 1
+    },
+    {
+      "id": 6,
+      "name": "@gigaroom/update-member",
+      "requestType": "@gigaroom/member",
+      "version": 1
+    },
+    {
+      "id": 7,
+      "name": "@gigaroom/remove-member",
+      "requestType": "@gigaroom/member",
+      "version": 1
+    },
+    {
+      "id": 8,
+      "name": "@gigaroom/create-role",
+      "requestType": "@gigaroom/role",
+      "version": 1
+    },
+    {
+      "id": 9,
+      "name": "@gigaroom/update-role",
+      "requestType": "@gigaroom/role",
+      "version": 1
+    },
+    {
+      "id": 10,
+      "name": "@gigaroom/delete-role",
+      "requestType": "@gigaroom/role",
+      "version": 1
+    },
+    {
+      "id": 11,
+      "name": "@gigaroom/set-permission-override",
+      "requestType": "@gigaroom/permissionOverride",
+      "version": 1
+    },
+    {
+      "id": 12,
+      "name": "@gigaroom/create-channel",
+      "requestType": "@gigaroom/channel",
+      "version": 1
+    },
+    {
+      "id": 13,
+      "name": "@gigaroom/update-channel",
+      "requestType": "@gigaroom/channel",
+      "version": 1
+    },
+    {
+      "id": 14,
+      "name": "@gigaroom/delete-channel",
+      "requestType": "@gigaroom/channel",
+      "version": 1
+    },
+    {
+      "id": 15,
+      "name": "@gigaroom/create-category",
+      "requestType": "@gigaroom/category",
+      "version": 1
+    },
+    {
+      "id": 16,
+      "name": "@gigaroom/update-category",
+      "requestType": "@gigaroom/category",
+      "version": 1
+    },
+    {
+      "id": 17,
+      "name": "@gigaroom/delete-category",
+      "requestType": "@gigaroom/category",
+      "version": 1
+    },
+    {
+      "id": 18,
+      "name": "@gigaroom/create-thread",
+      "requestType": "@gigaroom/thread",
+      "version": 1
+    },
+    {
+      "id": 19,
+      "name": "@gigaroom/update-thread",
+      "requestType": "@gigaroom/thread",
+      "version": 1
+    },
+    {
+      "id": 20,
+      "name": "@gigaroom/add-message",
+      "requestType": "@gigaroom/message",
+      "version": 1
+    },
+    {
+      "id": 21,
+      "name": "@gigaroom/edit-message",
+      "requestType": "@gigaroom/message",
+      "version": 1
+    },
+    {
+      "id": 22,
+      "name": "@gigaroom/delete-message",
+      "requestType": "@gigaroom/message",
+      "version": 1
+    },
+    {
+      "id": 23,
+      "name": "@gigaroom/add-reaction",
+      "requestType": "@gigaroom/reaction",
+      "version": 1
+    },
+    {
+      "id": 24,
+      "name": "@gigaroom/remove-reaction",
+      "requestType": "@gigaroom/reaction",
+      "version": 1
+    },
+    {
+      "id": 25,
+      "name": "@gigaroom/add-file",
+      "requestType": "@gigaroom/file",
+      "version": 1
+    },
+    {
+      "id": 26,
+      "name": "@gigaroom/add-mention",
+      "requestType": "@gigaroom/mention",
+      "version": 1
+    }
+  ]
+}

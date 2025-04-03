@@ -1,0 +1,835 @@
+{
+  "version": 1,
+  "schema": [
+    {
+      "name": "writer",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": -1,
+      "fields": [
+        {
+          "name": "key",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "invite",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 4,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "invite",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "publicKey",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "expires",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "maxUses",
+          "required": false,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "useCount",
+          "required": false,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "isRevoked",
+          "required": false,
+          "type": "bool",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 2,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "channelId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "type",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "sender",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "senderName",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "content",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "timestamp",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "signature",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "status",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "edited",
+          "required": false,
+          "type": "bool",
+          "version": 1
+        },
+        {
+          "name": "editedAt",
+          "required": false,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "replyToId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "threadRootId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "forwardedFromId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "deleted",
+          "required": false,
+          "type": "bool",
+          "version": 1
+        },
+        {
+          "name": "deletedBy",
+          "required": false,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "deletedAt",
+          "required": false,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "searchableText",
+          "required": false,
+          "type": "string",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "reaction",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": -1,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "messageId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "emoji",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "user",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "timestamp",
+          "required": true,
+          "type": "int",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "room",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 3,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "type",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "name",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "avatar",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "createdBy",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "discoveryKey",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "coreKey",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "isPrivate",
+          "required": false,
+          "type": "bool",
+          "version": 1
+        },
+        {
+          "name": "isEncrypted",
+          "required": false,
+          "type": "bool",
+          "version": 1
+        },
+        {
+          "name": "encryptionInfo",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "settings",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "metadata",
+          "required": false,
+          "type": "string",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "member",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 3,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "userKey",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "displayName",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "joinedAt",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "invitedBy",
+          "required": false,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "lastActivity",
+          "required": false,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "status",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "lastReadId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roles",
+          "required": false,
+          "type": "string",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "role",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 3,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "name",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "color",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "position",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "permissions",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "createdBy",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "isDefault",
+          "required": false,
+          "type": "bool",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "permissionOverride",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 4,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "targetType",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "targetId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "channelId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "allow",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "deny",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "setAt",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "setBy",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "thread",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 2,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "channelId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "name",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "createdBy",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "lastActivity",
+          "required": false,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "messageCount",
+          "required": false,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "isArchived",
+          "required": false,
+          "type": "bool",
+          "version": 1
+        },
+        {
+          "name": "settings",
+          "required": false,
+          "type": "string",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "channel",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 4,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "type",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "name",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "topic",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "position",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "categoryId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "createdBy",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "isDefault",
+          "required": false,
+          "type": "bool",
+          "version": 1
+        },
+        {
+          "name": "settings",
+          "required": false,
+          "type": "string",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": -1,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "name",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "position",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "createdAt",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "createdBy",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "file",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 11,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "messageId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "name",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "size",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "type",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "hash",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "owner",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "uploadedAt",
+          "required": true,
+          "type": "int",
+          "version": 1
+        },
+        {
+          "name": "coreKey",
+          "required": true,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "blobInfo",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "isEncrypted",
+          "required": false,
+          "type": "bool",
+          "version": 1
+        },
+        {
+          "name": "metadata",
+          "required": false,
+          "type": "string",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "mention",
+      "namespace": "gigaroom",
+      "compact": false,
+      "flagsPosition": 2,
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "messageId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "userId",
+          "required": false,
+          "type": "buffer",
+          "version": 1
+        },
+        {
+          "name": "roleId",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "roomId",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "timestamp",
+          "required": true,
+          "type": "int",
+          "version": 1
+        }
+      ]
+    }
+  ]
+}
