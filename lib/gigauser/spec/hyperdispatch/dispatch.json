@@ -42,6 +42,12 @@
       "name": "@gigauser/update-settings",
       "requestType": "@gigauser/settings",
       "version": 1
+    },
+    {
+      "id": 7,
+      "name": "@gigauser/set-identity",
+      "requestType": "@gigauser/identity",
+      "version": 1
     }
   ]
 }

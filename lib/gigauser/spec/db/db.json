@@ -79,6 +79,19 @@
         "key"
       ],
       "trigger": null
+    },
+    {
+      "name": "identity",
+      "namespace": "gigauser",
+      "id": 6,
+      "type": 1,
+      "indexes": [],
+      "schema": "@gigauser/identity",
+      "derived": false,
+      "key": [
+        "key"
+      ],
+      "trigger": null
     }
   ]
 }

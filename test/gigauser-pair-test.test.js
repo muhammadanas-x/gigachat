@@ -76,10 +76,28 @@ async function testDevicePairingSync() {
   // Create secondary user by pairing
   const secondaryUser = await Gigauser.pairDevice(store2, invite)
   await secondaryUser.ready()
-  await delay(2000)
   console.log(`  - Secondary user paired successfully`)
-  // await primaryUser.refreshUser()
-  // await secondaryUser.refreshUser()
+  await delay(2000)
+
+  function waitForIdentityEvent(user, timeout = 10000) {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        console.log('timeout')
+        resolve()
+      }, timeout);
+
+      user.on('identity-updated', () => {
+        clearTimeout(timer);
+        resolve();
+      });
+    });
+  }
+
+  await primaryUser.refreshUser()
+  await secondaryUser.refreshUser()
+
+  console.log('  - Waiting for identity synchronization...');
+  await waitForIdentityEvent(secondaryUser, 5000);
 
 
   const pub1 = (primaryUser?.publicKey)?.toString('hex')
@@ -107,6 +125,8 @@ async function testDevicePairingSync() {
     throw new Error('Profile did not sync correctly between devices')
   }
 
+
+
   // Add a room on secondary device
   await secondaryUser.addRoom(TEST_ROOM)
   console.log('  - Added room on secondary device')
@@ -114,8 +134,12 @@ async function testDevicePairingSync() {
   // Wait a bit for sync
   await delay(200)
 
+  await primaryUser.refreshRooms()
+  await secondaryUser.refreshRooms()
+
   // Verify room sync
   const syncedRoom = primaryUser.rooms.find(r => r.id === TEST_ROOM.id)
+  console.log(primaryUser.rooms, secondaryUser.rooms)
   if (!syncedRoom || syncedRoom.name !== TEST_ROOM.name) {
     throw new Error('Room did not sync correctly between devices')
   }
@@ -126,6 +150,9 @@ async function testDevicePairingSync() {
 
   // Wait a bit for sync
   await delay(200)
+
+  await primaryUser.refreshSettings()
+  await secondaryUser.refreshSettings()
 
   // Verify settings sync
   if (secondaryUser.settings.theme !== TEST_SETTINGS.theme ||
