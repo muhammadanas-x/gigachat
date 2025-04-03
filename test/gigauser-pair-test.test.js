@@ -72,22 +72,18 @@ async function testDevicePairingSync() {
   const invite = await primaryUser.createPairingInvite()
   console.log(`  - Pairing invite created: ${invite.substring(0, 10)}...`)
 
-  await delay(500)
+  await delay(1000)
   // Create secondary user by pairing
   const secondaryUser = await Gigauser.pairDevice(store2, invite)
   await secondaryUser.ready()
-
-
-  await delay(500)
-
-
+  await delay(2000)
   console.log(`  - Secondary user paired successfully`)
   // await primaryUser.refreshUser()
   // await secondaryUser.refreshUser()
 
 
-  const pub1 = (primaryUser.publicKey).toString('hex')
-  const pub2 = (secondaryUser.publicKey).toString('hex')
+  const pub1 = (primaryUser?.publicKey)?.toString('hex')
+  const pub2 = (secondaryUser?.publicKey)?.toString('hex')
   console.log({ pub1, pub2 })
 
   // Verify public keys match
