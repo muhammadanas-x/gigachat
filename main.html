@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gigachat Web Interface</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .messages {
+      margin-top: 20px;
+      padding: 10px;
+      border-top: 2px solid #ddd;
+      height: 200px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+    .message {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Gigachat Web Interface</h2>
+
+    <button id="createRoomBtn">Create Room</button>
+    <button id="joinRoomBtn" style="display:none;">Join Room</button>
+
+    <div class="messages" id="messages"></div>
+
+    <input type="text" id="messageInput" placeholder="Type a message" style="width: 100%; padding: 10px; margin-top: 10px;">
+    <button id="sendMessageBtn" style="width: 100%; margin-top: 10px; display:none;">Send Message</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/corestore/dist/corestore.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gigachat/dist/gigachat.min.js"></script>
+  <script>
+    // Import necessary Gigachat libraries
+    const Corestore = window.Corestore;
+    const Gigauser = window.Gigauser;
+
+    let user, room, channel;
+
+    // Initialize corestore for user data storage
+    const store = new Corestore('./user-storage');
+
+    async function createUser() {
+      user = await Gigauser.create(store, [
+        'river', 'blue', 'mountain', 'green', 'forest', 
+        'tall', 'river', 'blue', 'mountain', 'green', 
+        'forest', 'tall'
+      ]);
+      console.log('User created');
+    }
+
+    async function createRoom() {
+      // Create room
+      room = await user.createRoom({
+        name: 'My Awesome Community',
+        description: 'A place for cool people',
+        isPrivate: false
+      });
+
+      // Create invite code for the room
+      const inviteCode = await room.createInvite();
+      console.log('Room created, invite code:', inviteCode);
+      document.getElementById('joinRoomBtn').style.display = 'inline-block';
+      document.getElementById('createRoomBtn').style.display = 'none';
+    }
+
+    async function joinRoom(inviteCode) {
+      // Join room using invite code
+      room = await user.joinRoom(inviteCode);
+      console.log('Room joined');
+      
+      // Create a channel
+      channel = room.channels.find(c => c.name === 'general');
+      document.getElementById('sendMessageBtn').style.display = 'inline-block';
+    }
+
+    async function sendMessage() {
+      const message = document.getElementById('messageInput').value;
+      await channel.sendMessage(message);
+      displayMessage(message);
+      document.getElementById('messageInput').value = ''; // Clear the input field
+    }
+
+    function displayMessage(message) {
+      const messageContainer = document.getElementById('messages');
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message');
+      messageElement.textContent = message;
+      messageContainer.appendChild(messageElement);
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
+
+    // Event listeners for buttons
+    document.getElementById('createRoomBtn').addEventListener('click', async () => {
+      await createRoom();
+    });
+
+    document.getElementById('joinRoomBtn').addEventListener('click', async () => {
+      const inviteCode = prompt('Enter Invite Code:');
+      if (inviteCode) {
+        await joinRoom(inviteCode);
+      }
+    });
+
+    document.getElementById('sendMessageBtn').addEventListener('click', () => {
+      sendMessage();
+    });
+
+    // Initialize user on page load
+    createUser();
+  </script>
+
+</body>
+</html>

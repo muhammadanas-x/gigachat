@@ -1,0 +1,114 @@
+2025/04/04-16:29:30.744329 5dcc RocksDB version: 10.1.0
+2025/04/04-16:29:30.744423 5dcc Git sha 68b2d941be2d273067aeb7e14ccd090d1512c426
+2025/04/04-16:29:30.744449 5dcc Compile date 2025-03-26 13:45:51
+2025/04/04-16:29:30.744465 5dcc DB SUMMARY
+2025/04/04-16:29:30.744483 5dcc Host name (Env):  MIDNYY
+2025/04/04-16:29:30.744500 5dcc DB Session ID:  N48DZPT5FW9N96YR8WU2
+2025/04/04-16:29:30.744721 5dcc CURRENT file:  CURRENT
+2025/04/04-16:29:30.744741 5dcc IDENTITY file:  IDENTITY
+2025/04/04-16:29:30.744812 5dcc MANIFEST file:  MANIFEST-000005 size: 176 Bytes
+2025/04/04-16:29:30.744829 5dcc SST files in user-storage\db dir, Total Num: 0, files: 
+2025/04/04-16:29:30.744845 5dcc Write Ahead Log file in user-storage\db: 000004.log size: 166894 ; 
+2025/04/04-16:29:30.747103 5dcc                         Options.error_if_exists: 0
+2025/04/04-16:29:30.747122 5dcc                       Options.create_if_missing: 1
+2025/04/04-16:29:30.747129 5dcc                         Options.paranoid_checks: 1
+2025/04/04-16:29:30.747135 5dcc             Options.flush_verify_memtable_count: 1
+2025/04/04-16:29:30.747141 5dcc          Options.compaction_verify_record_count: 1
+2025/04/04-16:29:30.747147 5dcc                               Options.track_and_verify_wals_in_manifest: 0
+2025/04/04-16:29:30.747153 5dcc                               Options.track_and_verify_wals: 0
+2025/04/04-16:29:30.747159 5dcc        Options.verify_sst_unique_id_in_manifest: 1
+2025/04/04-16:29:30.747165 5dcc                                     Options.env: 00000162E3F49E50
+2025/04/04-16:29:30.747172 5dcc                                      Options.fs: RocksFS
+2025/04/04-16:29:30.747178 5dcc                                Options.info_log: 00000162E3D73860
+2025/04/04-16:29:30.747185 5dcc                Options.max_file_opening_threads: 16
+2025/04/04-16:29:30.747191 5dcc                              Options.statistics: 0000000000000000
+2025/04/04-16:29:30.747197 5dcc                               Options.use_fsync: 0
+2025/04/04-16:29:30.747203 5dcc                       Options.max_log_file_size: 0
+2025/04/04-16:29:30.747210 5dcc                  Options.max_manifest_file_size: 1073741824
+2025/04/04-16:29:30.747217 5dcc                   Options.log_file_time_to_roll: 0
+2025/04/04-16:29:30.747225 5dcc                       Options.keep_log_file_num: 1000
+2025/04/04-16:29:30.747232 5dcc                    Options.recycle_log_file_num: 0
+2025/04/04-16:29:30.747239 5dcc                         Options.allow_fallocate: 1
+2025/04/04-16:29:30.747247 5dcc                        Options.allow_mmap_reads: 0
+2025/04/04-16:29:30.747254 5dcc                       Options.allow_mmap_writes: 0
+2025/04/04-16:29:30.747263 5dcc                        Options.use_direct_reads: 0
+2025/04/04-16:29:30.747271 5dcc                        Options.use_direct_io_for_flush_and_compaction: 0
+2025/04/04-16:29:30.747408 5dcc          Options.create_missing_column_families: 1
+2025/04/04-16:29:30.747427 5dcc                              Options.db_log_dir: 
+2025/04/04-16:29:30.747434 5dcc                                 Options.wal_dir: 
+2025/04/04-16:29:30.747440 5dcc                Options.table_cache_numshardbits: 6
+2025/04/04-16:29:30.747447 5dcc                         Options.WAL_ttl_seconds: 0
+2025/04/04-16:29:30.747453 5dcc                       Options.WAL_size_limit_MB: 0
+2025/04/04-16:29:30.747460 5dcc                        Options.max_write_batch_group_size_bytes: 1048576
+2025/04/04-16:29:30.747474 5dcc             Options.manifest_preallocation_size: 4194304
+2025/04/04-16:29:30.747483 5dcc                     Options.is_fd_close_on_exec: 1
+2025/04/04-16:29:30.747492 5dcc                   Options.advise_random_on_open: 1
+2025/04/04-16:29:30.747511 5dcc                    Options.db_write_buffer_size: 0
+2025/04/04-16:29:30.747693 5dcc                    Options.write_buffer_manager: 00000162E3B06E50
+2025/04/04-16:29:30.747712 5dcc                      Options.use_adaptive_mutex: 0
+2025/04/04-16:29:30.747720 5dcc                            Options.rate_limiter: 0000000000000000
+2025/04/04-16:29:30.747727 5dcc     Options.sst_file_manager.rate_bytes_per_sec: 0
+2025/04/04-16:29:30.747778 5dcc                       Options.wal_recovery_mode: 2
+2025/04/04-16:29:30.747789 5dcc                  Options.enable_thread_tracking: 0
+2025/04/04-16:29:30.747797 5dcc                  Options.enable_pipelined_write: 0
+2025/04/04-16:29:30.747805 5dcc                  Options.unordered_write: 0
+2025/04/04-16:29:30.747813 5dcc         Options.allow_concurrent_memtable_write: 1
+2025/04/04-16:29:30.747856 5dcc      Options.enable_write_thread_adaptive_yield: 1
+2025/04/04-16:29:30.747865 5dcc             Options.write_thread_max_yield_usec: 100
+2025/04/04-16:29:30.747872 5dcc            Options.write_thread_slow_yield_usec: 3
+2025/04/04-16:29:30.747878 5dcc                               Options.row_cache: None
+2025/04/04-16:29:30.747883 5dcc                              Options.wal_filter: None
+2025/04/04-16:29:30.747890 5dcc             Options.avoid_flush_during_recovery: 0
+2025/04/04-16:29:30.747896 5dcc             Options.allow_ingest_behind: 0
+2025/04/04-16:29:30.747902 5dcc             Options.two_write_queues: 0
+2025/04/04-16:29:30.747907 5dcc             Options.manual_wal_flush: 0
+2025/04/04-16:29:30.747913 5dcc             Options.wal_compression: 0
+2025/04/04-16:29:30.747919 5dcc             Options.background_close_inactive_wals: 0
+2025/04/04-16:29:30.747925 5dcc             Options.atomic_flush: 0
+2025/04/04-16:29:30.747931 5dcc             Options.avoid_unnecessary_blocking_io: 0
+2025/04/04-16:29:30.747937 5dcc             Options.prefix_seek_opt_in_only: 0
+2025/04/04-16:29:30.747944 5dcc                 Options.persist_stats_to_disk: 0
+2025/04/04-16:29:30.747952 5dcc                 Options.write_dbid_to_manifest: 1
+2025/04/04-16:29:30.747961 5dcc                 Options.write_identity_file: 1
+2025/04/04-16:29:30.747969 5dcc                 Options.log_readahead_size: 0
+2025/04/04-16:29:30.748011 5dcc                 Options.file_checksum_gen_factory: Unknown
+2025/04/04-16:29:30.748021 5dcc                 Options.best_efforts_recovery: 0
+2025/04/04-16:29:30.748027 5dcc                Options.max_bgerror_resume_count: 2147483647
+2025/04/04-16:29:30.748034 5dcc            Options.bgerror_resume_retry_interval: 1000000
+2025/04/04-16:29:30.748040 5dcc             Options.allow_data_in_errors: 0
+2025/04/04-16:29:30.748046 5dcc             Options.db_host_id: __hostname__
+2025/04/04-16:29:30.748052 5dcc             Options.enforce_single_del_contracts: true
+2025/04/04-16:29:30.748059 5dcc             Options.metadata_write_temperature: kUnknown
+2025/04/04-16:29:30.748065 5dcc             Options.wal_write_temperature: kUnknown
+2025/04/04-16:29:30.748071 5dcc             Options.max_background_jobs: 6
+2025/04/04-16:29:30.748078 5dcc             Options.max_background_compactions: -1
+2025/04/04-16:29:30.748094 5dcc             Options.max_subcompactions: 1
+2025/04/04-16:29:30.748100 5dcc             Options.avoid_flush_during_shutdown: 0
+2025/04/04-16:29:30.748106 5dcc           Options.writable_file_max_buffer_size: 1048576
+2025/04/04-16:29:30.748113 5dcc             Options.delayed_write_rate : 16777216
+2025/04/04-16:29:30.748119 5dcc             Options.max_total_wal_size: 0
+2025/04/04-16:29:30.748124 5dcc             Options.delete_obsolete_files_period_micros: 21600000000
+2025/04/04-16:29:30.748131 5dcc                   Options.stats_dump_period_sec: 600
+2025/04/04-16:29:30.748138 5dcc                 Options.stats_persist_period_sec: 600
+2025/04/04-16:29:30.748144 5dcc                 Options.stats_history_buffer_size: 1048576
+2025/04/04-16:29:30.748150 5dcc                          Options.max_open_files: -1
+2025/04/04-16:29:30.748156 5dcc                          Options.bytes_per_sync: 1048576
+2025/04/04-16:29:30.748162 5dcc                      Options.wal_bytes_per_sync: 0
+2025/04/04-16:29:30.748168 5dcc                   Options.strict_bytes_per_sync: 0
+2025/04/04-16:29:30.748174 5dcc       Options.compaction_readahead_size: 2097152
+2025/04/04-16:29:30.748180 5dcc                  Options.max_background_flushes: -1
+2025/04/04-16:29:30.748387 5dcc Options.daily_offpeak_time_utc: 
+2025/04/04-16:29:30.748495 5dcc Compression algorithms supported:
+2025/04/04-16:29:30.748521 5dcc 	kZSTD supported: 0
+2025/04/04-16:29:30.748530 5dcc 	kSnappyCompression supported: 0
+2025/04/04-16:29:30.748539 5dcc 	kBZip2Compression supported: 0
+2025/04/04-16:29:30.748547 5dcc 	kZlibCompression supported: 0
+2025/04/04-16:29:30.748555 5dcc 	kLZ4Compression supported: 0
+2025/04/04-16:29:30.748581 5dcc 	kXpressCompression supported: 0
+2025/04/04-16:29:30.748591 5dcc 	kLZ4HCCompression supported: 0
+2025/04/04-16:29:30.748602 5dcc Fast CRC32 supported: Not supported on x86
+2025/04/04-16:29:30.748610 5dcc DMutex implementation: std::mutex
+2025/04/04-16:29:30.748619 5dcc Jemalloc supported: 0
+2025/04/04-16:29:30.749176 5dcc [WARN] [db\db_impl\db_impl_open.cc:2632] DB::Open() failed: IO error: Failed to create lock file: user-storage\db/LOCK: The process cannot access the file because it is being used by another process.
+2025/04/04-16:29:30.749213 5dcc [db\db_impl\db_impl.cc:497] Shutdown: canceling all background work
+2025/04/04-16:29:30.749258 5dcc [db\db_impl\db_impl.cc:711] Shutdown complete

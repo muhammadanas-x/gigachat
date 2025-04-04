@@ -1,0 +1,114 @@
+2025/04/04-16:29:31.319254 1e1c RocksDB version: 10.1.0
+2025/04/04-16:29:31.319364 1e1c Git sha 68b2d941be2d273067aeb7e14ccd090d1512c426
+2025/04/04-16:29:31.319404 1e1c Compile date 2025-03-26 13:45:51
+2025/04/04-16:29:31.319434 1e1c DB SUMMARY
+2025/04/04-16:29:31.319471 1e1c Host name (Env):  MIDNYY
+2025/04/04-16:29:31.319505 1e1c DB Session ID:  N48DZPT5FW9N96YR8WTW
+2025/04/04-16:29:31.320125 1e1c CURRENT file:  CURRENT
+2025/04/04-16:29:31.320159 1e1c IDENTITY file:  IDENTITY
+2025/04/04-16:29:31.320234 1e1c MANIFEST file:  MANIFEST-000005 size: 176 Bytes
+2025/04/04-16:29:31.320481 1e1c SST files in user-storage\db dir, Total Num: 0, files: 
+2025/04/04-16:29:31.320673 1e1c Write Ahead Log file in user-storage\db: 000004.log size: 166894 ; 
+2025/04/04-16:29:31.320847 1e1c                         Options.error_if_exists: 0
+2025/04/04-16:29:31.320857 1e1c                       Options.create_if_missing: 1
+2025/04/04-16:29:31.320863 1e1c                         Options.paranoid_checks: 1
+2025/04/04-16:29:31.320870 1e1c             Options.flush_verify_memtable_count: 1
+2025/04/04-16:29:31.320876 1e1c          Options.compaction_verify_record_count: 1
+2025/04/04-16:29:31.320882 1e1c                               Options.track_and_verify_wals_in_manifest: 0
+2025/04/04-16:29:31.320888 1e1c                               Options.track_and_verify_wals: 0
+2025/04/04-16:29:31.320895 1e1c        Options.verify_sst_unique_id_in_manifest: 1
+2025/04/04-16:29:31.320903 1e1c                                     Options.env: 00000162E4087630
+2025/04/04-16:29:31.320910 1e1c                                      Options.fs: RocksFS
+2025/04/04-16:29:31.320918 1e1c                                Options.info_log: 00000162E3D738B0
+2025/04/04-16:29:31.320925 1e1c                Options.max_file_opening_threads: 16
+2025/04/04-16:29:31.320933 1e1c                              Options.statistics: 0000000000000000
+2025/04/04-16:29:31.320941 1e1c                               Options.use_fsync: 0
+2025/04/04-16:29:31.320972 1e1c                       Options.max_log_file_size: 0
+2025/04/04-16:29:31.320981 1e1c                  Options.max_manifest_file_size: 1073741824
+2025/04/04-16:29:31.320989 1e1c                   Options.log_file_time_to_roll: 0
+2025/04/04-16:29:31.321149 1e1c                       Options.keep_log_file_num: 1000
+2025/04/04-16:29:31.321168 1e1c                    Options.recycle_log_file_num: 0
+2025/04/04-16:29:31.321176 1e1c                         Options.allow_fallocate: 1
+2025/04/04-16:29:31.321182 1e1c                        Options.allow_mmap_reads: 0
+2025/04/04-16:29:31.321239 1e1c                       Options.allow_mmap_writes: 0
+2025/04/04-16:29:31.321261 1e1c                        Options.use_direct_reads: 0
+2025/04/04-16:29:31.321270 1e1c                        Options.use_direct_io_for_flush_and_compaction: 0
+2025/04/04-16:29:31.321377 1e1c          Options.create_missing_column_families: 1
+2025/04/04-16:29:31.321397 1e1c                              Options.db_log_dir: 
+2025/04/04-16:29:31.321404 1e1c                                 Options.wal_dir: 
+2025/04/04-16:29:31.321410 1e1c                Options.table_cache_numshardbits: 6
+2025/04/04-16:29:31.321417 1e1c                         Options.WAL_ttl_seconds: 0
+2025/04/04-16:29:31.321424 1e1c                       Options.WAL_size_limit_MB: 0
+2025/04/04-16:29:31.321432 1e1c                        Options.max_write_batch_group_size_bytes: 1048576
+2025/04/04-16:29:31.321446 1e1c             Options.manifest_preallocation_size: 4194304
+2025/04/04-16:29:31.321489 1e1c                     Options.is_fd_close_on_exec: 1
+2025/04/04-16:29:31.321497 1e1c                   Options.advise_random_on_open: 1
+2025/04/04-16:29:31.321504 1e1c                    Options.db_write_buffer_size: 0
+2025/04/04-16:29:31.321510 1e1c                    Options.write_buffer_manager: 00000162E3B06E50
+2025/04/04-16:29:31.321516 1e1c                      Options.use_adaptive_mutex: 0
+2025/04/04-16:29:31.321523 1e1c                            Options.rate_limiter: 0000000000000000
+2025/04/04-16:29:31.321530 1e1c     Options.sst_file_manager.rate_bytes_per_sec: 0
+2025/04/04-16:29:31.321581 1e1c                       Options.wal_recovery_mode: 2
+2025/04/04-16:29:31.321596 1e1c                  Options.enable_thread_tracking: 0
+2025/04/04-16:29:31.321604 1e1c                  Options.enable_pipelined_write: 0
+2025/04/04-16:29:31.321611 1e1c                  Options.unordered_write: 0
+2025/04/04-16:29:31.321618 1e1c         Options.allow_concurrent_memtable_write: 1
+2025/04/04-16:29:31.321627 1e1c      Options.enable_write_thread_adaptive_yield: 1
+2025/04/04-16:29:31.321740 1e1c             Options.write_thread_max_yield_usec: 100
+2025/04/04-16:29:31.321857 1e1c            Options.write_thread_slow_yield_usec: 3
+2025/04/04-16:29:31.321919 1e1c                               Options.row_cache: None
+2025/04/04-16:29:31.321930 1e1c                              Options.wal_filter: None
+2025/04/04-16:29:31.321937 1e1c             Options.avoid_flush_during_recovery: 0
+2025/04/04-16:29:31.321943 1e1c             Options.allow_ingest_behind: 0
+2025/04/04-16:29:31.321949 1e1c             Options.two_write_queues: 0
+2025/04/04-16:29:31.321955 1e1c             Options.manual_wal_flush: 0
+2025/04/04-16:29:31.321961 1e1c             Options.wal_compression: 0
+2025/04/04-16:29:31.321967 1e1c             Options.background_close_inactive_wals: 0
+2025/04/04-16:29:31.321973 1e1c             Options.atomic_flush: 0
+2025/04/04-16:29:31.321979 1e1c             Options.avoid_unnecessary_blocking_io: 0
+2025/04/04-16:29:31.321985 1e1c             Options.prefix_seek_opt_in_only: 0
+2025/04/04-16:29:31.321991 1e1c                 Options.persist_stats_to_disk: 0
+2025/04/04-16:29:31.321997 1e1c                 Options.write_dbid_to_manifest: 1
+2025/04/04-16:29:31.322003 1e1c                 Options.write_identity_file: 1
+2025/04/04-16:29:31.322009 1e1c                 Options.log_readahead_size: 0
+2025/04/04-16:29:31.322015 1e1c                 Options.file_checksum_gen_factory: Unknown
+2025/04/04-16:29:31.322023 1e1c                 Options.best_efforts_recovery: 0
+2025/04/04-16:29:31.322030 1e1c                Options.max_bgerror_resume_count: 2147483647
+2025/04/04-16:29:31.322036 1e1c            Options.bgerror_resume_retry_interval: 1000000
+2025/04/04-16:29:31.322042 1e1c             Options.allow_data_in_errors: 0
+2025/04/04-16:29:31.322049 1e1c             Options.db_host_id: __hostname__
+2025/04/04-16:29:31.322056 1e1c             Options.enforce_single_del_contracts: true
+2025/04/04-16:29:31.322157 1e1c             Options.metadata_write_temperature: kUnknown
+2025/04/04-16:29:31.322356 1e1c             Options.wal_write_temperature: kUnknown
+2025/04/04-16:29:31.322435 1e1c             Options.max_background_jobs: 6
+2025/04/04-16:29:31.322489 1e1c             Options.max_background_compactions: -1
+2025/04/04-16:29:31.322500 1e1c             Options.max_subcompactions: 1
+2025/04/04-16:29:31.322506 1e1c             Options.avoid_flush_during_shutdown: 0
+2025/04/04-16:29:31.322513 1e1c           Options.writable_file_max_buffer_size: 1048576
+2025/04/04-16:29:31.322519 1e1c             Options.delayed_write_rate : 16777216
+2025/04/04-16:29:31.322525 1e1c             Options.max_total_wal_size: 0
+2025/04/04-16:29:31.322531 1e1c             Options.delete_obsolete_files_period_micros: 21600000000
+2025/04/04-16:29:31.322538 1e1c                   Options.stats_dump_period_sec: 600
+2025/04/04-16:29:31.322544 1e1c                 Options.stats_persist_period_sec: 600
+2025/04/04-16:29:31.322550 1e1c                 Options.stats_history_buffer_size: 1048576
+2025/04/04-16:29:31.322556 1e1c                          Options.max_open_files: -1
+2025/04/04-16:29:31.322562 1e1c                          Options.bytes_per_sync: 1048576
+2025/04/04-16:29:31.322568 1e1c                      Options.wal_bytes_per_sync: 0
+2025/04/04-16:29:31.322574 1e1c                   Options.strict_bytes_per_sync: 0
+2025/04/04-16:29:31.322580 1e1c       Options.compaction_readahead_size: 2097152
+2025/04/04-16:29:31.322586 1e1c                  Options.max_background_flushes: -1
+2025/04/04-16:29:31.322641 1e1c Options.daily_offpeak_time_utc: 
+2025/04/04-16:29:31.322656 1e1c Compression algorithms supported:
+2025/04/04-16:29:31.322664 1e1c 	kZSTD supported: 0
+2025/04/04-16:29:31.322671 1e1c 	kSnappyCompression supported: 0
+2025/04/04-16:29:31.322679 1e1c 	kBZip2Compression supported: 0
+2025/04/04-16:29:31.322686 1e1c 	kZlibCompression supported: 0
+2025/04/04-16:29:31.322697 1e1c 	kLZ4Compression supported: 0
+2025/04/04-16:29:31.322704 1e1c 	kXpressCompression supported: 0
+2025/04/04-16:29:31.322800 1e1c 	kLZ4HCCompression supported: 0
+2025/04/04-16:29:31.322922 1e1c Fast CRC32 supported: Not supported on x86
+2025/04/04-16:29:31.322966 1e1c DMutex implementation: std::mutex
+2025/04/04-16:29:31.322974 1e1c Jemalloc supported: 0
+2025/04/04-16:29:31.323633 1e1c [WARN] [db\db_impl\db_impl_open.cc:2632] DB::Open() failed: IO error: Failed to create lock file: user-storage\db/LOCK: The process cannot access the file because it is being used by another process.
+2025/04/04-16:29:31.323656 1e1c [db\db_impl\db_impl.cc:497] Shutdown: canceling all background work
+2025/04/04-16:29:31.323693 1e1c [db\db_impl\db_impl.cc:711] Shutdown complete
