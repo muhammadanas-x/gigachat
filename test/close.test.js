@@ -186,12 +186,15 @@ async function runChannelSyncTest() {
     const reInitCreatorRoomFinal = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].id)
     const reInitJoinerRoomFinal = await reInitJoinerUser.getRoom(reInitJoinerUser.rooms[0].id)
 
+
     // Log and verify channels
+
+    await delay(5000, 'Waiting for second channel sync after adding a new channel')
+    await reInitCreatorRoomFinal.refreshChannels()
+    await reInitJoinerRoomFinal.refreshChannels()
     logChannels('Reinitialized Creator channels', reInitCreatorRoomFinal.channels)
     logChannels('Reinitialized Joiner channels', reInitJoinerRoomFinal.channels)
 
-
-    await delay(5000, 'Waiting for second channel sync after adding a new channel')
 
     // Verify second channel sync
     if (reInitCreatorRoomFinal.channels.length !== reInitJoinerRoomFinal.channels.length) {
