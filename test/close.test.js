@@ -105,7 +105,7 @@ async function runChannelSyncTest() {
 
     console.log({ creatorRooms: creatorUser.rooms })
     // Create first channel by creator
-    const creatorRoom = await creatorUser.getRoom(creatorUser.rooms[0].roomNamespace)
+    const creatorRoom = await creatorUser.getRoom(creatorUser.rooms[0].id)
     console.log('Creator room retrieved:', {
       roomId: creatorRoom.id,
       baseReady: !!creatorRoom.base,
@@ -127,14 +127,14 @@ async function runChannelSyncTest() {
     await delay(5000, 'Waiting for first channel sync')
 
     // Verify channels
-    const creatorRoomAfterFirstChannel = await creatorUser.getRoom(creatorUser.rooms[0].roomNamespace)
-    const joinerRoomAfterFirstChannel = await joinerUser.getRoom(joinerUser.rooms[0].roomNamespace)
+    const creatorRoomAfterFirstChannel = await creatorUser.getRoom(creatorUser.rooms[0].id)
+    const joinerRoomAfterFirstChannel = await joinerUser.getRoom(joinerUser.rooms[0].id)
 
     logChannels('Creator', creatorRoomAfterFirstChannel.channels)
     logChannels('Joiner', joinerRoomAfterFirstChannel.channels)
 
     // Verify first channel sync
-    if (creatorRoomAfterFirstChannel.channels.length !== joinerRoomAfterFirstChannel.channels.length) {
+    if (creatorRoomAfterFirstChannel._channels.length !== joinerRoomAfterFirstChannel._channels.length) {
       throw new Error('Channel count mismatch after first channel creation')
     }
 
@@ -170,7 +170,7 @@ async function runChannelSyncTest() {
     console.log('ROOMS OF JOINER AFTER REINIT: ', reInitJoinerUser.rooms)
 
     // Get rooms for reinitialized users
-    const reInitCreatorRoom = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].roomNamespace)
+    const reInitCreatorRoom = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].id)
 
     // Create second channel
     await reInitCreatorRoom.createChannel({
@@ -180,11 +180,11 @@ async function runChannelSyncTest() {
     })
 
     // Wait for sync
-    await delay(5000, 'Waiting for second channel sync after reinitialization')
+    await delay(6000, 'Waiting for second channel sync after reinitialization')
 
     // Get rooms again to ensure fresh data
-    const reInitCreatorRoomFinal = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].roomNamespace)
-    const reInitJoinerRoomFinal = await reInitJoinerUser.getRoom(reInitJoinerUser.rooms[0].roomNamespace)
+    const reInitCreatorRoomFinal = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].id)
+    const reInitJoinerRoomFinal = await reInitJoinerUser.getRoom(reInitJoinerUser.rooms[0].id)
 
     // Log and verify channels
     logChannels('Reinitialized Creator channels', reInitCreatorRoomFinal.channels)
@@ -198,8 +198,8 @@ async function runChannelSyncTest() {
       throw new Error('Channel count mismatch after second channel creation')
     }
 
-    const finalCreatorRoomFinal = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].roomNamespace)
-    const finalJoinerRoomFinal = await reInitJoinerUser.getRoom(reInitJoinerUser.rooms[0].roomNamespace)
+    const finalCreatorRoomFinal = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].id)
+    const finalJoinerRoomFinal = await reInitJoinerUser.getRoom(reInitJoinerUser.rooms[0].id)
 
 
     console.log({
