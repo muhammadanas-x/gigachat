@@ -202,6 +202,11 @@ async function runChannelSyncTest() {
     const finalJoinerRoomFinal = await reInitJoinerUser.getRoom(reInitJoinerUser.rooms[0].roomNamespace)
 
 
+    console.log({
+      creatorRooms: reInitCreatorUser.rooms,
+      joinerRooms: reInitJoinerUser.rooms
+    })
+
     logChannels('Final Creator channels', finalCreatorRoomFinal.channels)
     logChannels('Final Joiner channels', finalJoinerRoomFinal.channels)
 
