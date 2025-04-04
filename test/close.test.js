@@ -1,9 +1,10 @@
-// test/channel-sync-complete.test.js
+// test/channel-sync-event.test.js
 const Corestore = require('corestore')
 const Gigauser = require('../lib/gigauser/Gigauser.js')
 const fs = require('fs')
 const path = require('path')
 const { rimraf } = require('rimraf')
+const { promisify } = require('util')
 
 // Test directories
 const TEST_BASE_DIR = path.join('./test-channel-sync/')
@@ -21,10 +22,22 @@ const TEST_ROOM = {
   type: 'community'
 }
 
-// Utility delay function
-function delay(ms, message = '') {
-  console.log(`⏳ Waiting ${ms}ms: ${message}`)
-  return new Promise(resolve => setTimeout(resolve, ms))
+// Utility function to create Promise-based event listeners
+function waitForEvent(emitter, eventName, timeout = 20000) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      emitter.removeListener(eventName, handler)
+      reject(new Error(`Timeout waiting for ${eventName} event`))
+    }, timeout)
+
+    function handler(data) {
+      clearTimeout(timer)
+      emitter.removeListener(eventName, handler)
+      resolve(data)
+    }
+
+    emitter.on(eventName, handler)
+  })
 }
 
 // Detailed logging function
@@ -39,9 +52,47 @@ function logChannels(title, channels) {
   })
 }
 
+// Utility function to wait for channel updates
+async function waitForChannelsUpdate(room, expectedLength, timeout = 15000) {
+  console.log(`Waiting for room ${room.id} to have ${expectedLength} channels...`)
+
+  // First check if channels already match expected length
+  await room._refreshChannels()
+  if (room.channels.length === expectedLength) {
+    console.log(`Room already has ${expectedLength} channels.`)
+    return room.channels
+  }
+
+  // Otherwise, wait for a channels update
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      room.removeListener('channels:updated', handler)
+      reject(new Error(`Timeout waiting for channels to update to ${expectedLength} (current: ${room.channels.length})`))
+    }, timeout)
+
+    function handler(channels) {
+      if (channels.length === expectedLength) {
+        clearTimeout(timer)
+        room.removeListener('channels:updated', handler)
+        console.log(`Room now has ${expectedLength} channels.`)
+        resolve(channels)
+      } else {
+        console.log(`Got channel update but count is ${channels.length}, waiting for ${expectedLength}...`)
+      }
+    }
+
+    room.on('channels:updated', handler)
+
+    // Force an update to trigger events
+    room.forceUpdate().catch(err => {
+      console.error('Error forcing update:', err)
+    })
+  })
+}
+
 // Test runner
 async function runChannelSyncTest() {
-  console.log('🔍 Starting Channel Synchronization Test...')
+  console.log('🔍 Starting Event-Based Channel Synchronization Test...')
   console.log('-----------------------------')
 
   // Clean up any existing test directories
@@ -86,14 +137,12 @@ async function runChannelSyncTest() {
     await joinerUser.ready()
     console.log(`  - Joiner user created: ${joinerUser.publicKey.toString('hex').substring(0, 8)}...`)
 
-    // Wait for network propagation
-    await delay(2000, 'Initial network setup')
-
-    // Join the room
+    // Join the room and wait for 'update:complete' event
     console.log('  - Joining the room...')
-    const joinedRoom = await joinerUser.joinRoom(roomInvite)
-    console.log(`  - Joined room successfully: ${joinedRoom.id}`)
+    const joinPromise = joinerUser.joinRoom(roomInvite)
 
+    const joinedRoom = await joinPromise
+    console.log(`  - Joined room successfully: ${joinedRoom.id}`)
 
     console.log({
       creatorRooms: creatorUser.rooms,
@@ -103,7 +152,6 @@ async function runChannelSyncTest() {
     // PART 2: First Channel Creation
     console.log('\n📋 PHASE 2: First Channel Creation')
 
-    console.log({ creatorRooms: creatorUser.rooms })
     // Create first channel by creator
     const creatorRoom = await creatorUser.getRoom(creatorUser.rooms[0].id)
     console.log('Creator room retrieved:', {
@@ -112,31 +160,37 @@ async function runChannelSyncTest() {
       baseKey: creatorRoom.base ? creatorRoom.base.key.toString('hex') : 'No base'
     })
 
-    // Create the channel with comprehensive logging
-    try {
-      await creatorRoom.createChannel({
-        name: 'general-chat',
-        type: 'text',
-        isDefault: true
-      })
-      console.log('Channel created successfully')
-    } catch (channelCreateError) {
-      console.error('Error creating channel:', channelCreateError)
-      throw channelCreateError
-    }    // Wait for sync
-    await delay(5000, 'Waiting for first channel sync')
+    // Set up event listeners for both rooms
+    const creatorChannelUpdatePromise = waitForEvent(creatorRoom, 'channels:updated')
+
+    // Create the channel
+    console.log('Creating first channel: general-chat')
+    await creatorRoom.createChannel({
+      name: 'general-chat',
+      type: 'text',
+      isDefault: true
+    })
+
+    // Wait for creator's channel update
+    await creatorChannelUpdatePromise
+    console.log('Creator detected channel update')
+
+    // Wait for joiner to get the channel update
+    const joinerRoom = await joinerUser.getRoom(joinerUser.rooms[0].id)
+    await waitForChannelsUpdate(joinerRoom, 1)
 
     // Verify channels
-    const creatorRoomAfterFirstChannel = await creatorUser.getRoom(creatorUser.rooms[0].id)
-    const joinerRoomAfterFirstChannel = await joinerUser.getRoom(joinerUser.rooms[0].id)
+    const creatorRoomChannels = await creatorRoom._refreshChannels()
+    const joinerRoomChannels = await joinerRoom._refreshChannels()
 
-    logChannels('Creator', creatorRoomAfterFirstChannel.channels)
-    logChannels('Joiner', joinerRoomAfterFirstChannel.channels)
+    logChannels('Creator', creatorRoomChannels)
+    logChannels('Joiner', joinerRoomChannels)
 
-    // Verify first channel sync
-    if (creatorRoomAfterFirstChannel._channels.length !== joinerRoomAfterFirstChannel._channels.length) {
-      throw new Error('Channel count mismatch after first channel creation')
+    // Verify channel sync
+    if (creatorRoom.channels.length !== joinerRoom.channels.length) {
+      throw new Error(`Channel count mismatch after first channel creation: creator has ${creatorRoom.channels.length}, joiner has ${joinerRoom.channels.length}`)
     }
+    console.log('✅ First channel successfully synchronized')
 
     // PART 3: Close and Reinitialize
     console.log('\n📋 PHASE 3: Close and Reinitialize')
@@ -159,61 +213,52 @@ async function runChannelSyncTest() {
 
     await reInitCreatorUser.ready()
     await reInitJoinerUser.ready()
-    // Wait for reinitialization
-    await delay(2000, 'Waiting for reinitialization')
+    console.log('Users successfully reinitialized')
 
     // PART 4: Second Channel Creation After Reinitialization
     console.log('\n📋 PHASE 4: Second Channel Creation After Reinitialization')
 
-
-    console.log('ROOMS OF CREATOR AFTER REINIT: ', reInitCreatorUser.rooms)
-    console.log('ROOMS OF JOINER AFTER REINIT: ', reInitJoinerUser.rooms)
+    console.log('ROOMS OF CREATOR AFTER REINIT:', reInitCreatorUser.rooms)
+    console.log('ROOMS OF JOINER AFTER REINIT:', reInitJoinerUser.rooms)
 
     // Get rooms for reinitialized users
     const reInitCreatorRoom = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].id)
+    const reInitJoinerRoom = await reInitJoinerUser.getRoom(reInitJoinerUser.rooms[0].id)
+
+    console.log('Initiated rooms', reInitCreatorRoom, reInitJoinerUser)
+    // Force update to load existing channels
+    await reInitCreatorRoom.forceUpdate()
+    await reInitJoinerRoom.forceUpdate()
+
+    // Set up event promises
+    const creatorSecondChannelUpdatePromise = waitForEvent(reInitCreatorRoom, 'channels:updated')
 
     // Create second channel
+    console.log('Creating second channel: gaming')
     await reInitCreatorRoom.createChannel({
       name: 'gaming',
       type: 'text',
       isDefault: false
     })
 
-    // Wait for sync
-    await delay(6000, 'Waiting for second channel sync after reinitialization')
+    // Wait for creator's update
+    await creatorSecondChannelUpdatePromise
+    console.log('Creator detected second channel update')
 
-    // Get rooms again to ensure fresh data
-    const reInitCreatorRoomFinal = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].id)
-    const reInitJoinerRoomFinal = await reInitJoinerUser.getRoom(reInitJoinerUser.rooms[0].id)
+    // Wait for joiner to get the channel update
+    await waitForChannelsUpdate(reInitJoinerRoom, 2)
 
+    // Refresh and check final channels
+    const finalCreatorChannels = await reInitCreatorRoom._refreshChannels()
+    const finalJoinerChannels = await reInitJoinerRoom._refreshChannels()
 
-    // Log and verify channels
+    logChannels('Final Creator channels', finalCreatorChannels)
+    logChannels('Final Joiner channels', finalJoinerChannels)
 
-    await delay(5000, 'Waiting for second channel sync after adding a new channel')
-    await reInitCreatorRoomFinal.refreshChannels()
-    await reInitJoinerRoomFinal.refreshChannels()
-    logChannels('Reinitialized Creator channels', reInitCreatorRoomFinal.channels)
-    logChannels('Reinitialized Joiner channels', reInitJoinerRoomFinal.channels)
-
-
-    // Verify second channel sync
-    if (reInitCreatorRoomFinal.channels.length !== reInitJoinerRoomFinal.channels.length) {
-      throw new Error('Channel count mismatch after second channel creation')
+    // Verify final channel count
+    if (finalCreatorChannels.length !== finalJoinerChannels.length) {
+      throw new Error(`Final channel count mismatch: creator has ${finalCreatorChannels.length}, joiner has ${finalJoinerChannels.length}`)
     }
-
-    const finalCreatorRoomFinal = await reInitCreatorUser.getRoom(reInitCreatorUser.rooms[0].id)
-    const finalJoinerRoomFinal = await reInitJoinerUser.getRoom(reInitJoinerUser.rooms[0].id)
-
-
-    console.log({
-      creatorRooms: reInitCreatorUser.rooms,
-      joinerRooms: reInitJoinerUser.rooms
-    })
-
-    logChannels('Final Creator channels', finalCreatorRoomFinal.channels)
-    logChannels('Final Joiner channels', finalJoinerRoomFinal.channels)
-
-
 
     console.log('-----------------------------')
     console.log('✅ Channel Synchronization Test Completed Successfully!')
